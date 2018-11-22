@@ -1,0 +1,56 @@
+#completeBoard{
+    display: grid;
+    grid-template-rows: 50px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+    grid-template-columns: 50px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+}
+
+#board{
+    grid-column: 2 / 9;
+    grid-row: 2 / 9;
+}
+
+#yMark{
+    display: flex;
+    height: 800px;
+    width: 50px;
+    align-items: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
+    grid-column: 1 / 1;
+    grid-row: 2 / 9;
+    padding: 40px 0px;
+}
+
+#xMark{
+    display: flex;
+    height: 50px;
+    width: 800px;
+    align-items: space-between;
+    justify-content: flex-start;
+    grid-column: 2 / 9;
+    grid-row: 1 / 1;
+}
+
+#empty{
+    display: flex;
+    height: 50px;
+    width: 50px;
+    align-items: space-between;
+    justify-content: flex-start;
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+}
+
+#yMark > li{
+    display:inline-block;    
+    height:12.5%;
+    text-align:center;
+    margin:auto auto auto auto;
+}
+
+#xMark > li{
+    list-style-type: none;
+    width: 12.5%;
+    margin:auto auto auto auto; 
+    text-align:center;
+}

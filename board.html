@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="./pieces.js"></script>
+        <script src="./board.js"></script>
+        <link rel="stylesheet" href="./board.css">
+        <body>
+        <div id="completeBoard">
+
+            <div id = "empty" class="board-item"></div>
+            <div id = "xMark" class="board-item">
+                <li>A</li>
+                <li>B</li>
+                <li>C</li>
+                <li>D</li>
+                <li>E</li>
+                <li>F</li>
+                <li>G</li>
+                <li>H</li>
+            </div>
+
+            <div id = "yMark" class="board-item">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+            </div>
+            <canvas id="board" width="800" height="800" class="board-item" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+        </div>
+    </body>
+</html>
