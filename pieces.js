@@ -244,7 +244,8 @@ class pawn extends Piece {
         this.letter = this.color ? 'p' : 'P'
     }
 
-    isIllegalMove(x1, y1, x2, y2, capture) {
+    isIllegalMove(x1, y1, x2, y2, capture, isEnpassant) {
+        window.enpassant = null
         if (super.isIllegalMove(x1, y1, x2, y2)) {
             return true
         }
@@ -253,8 +254,7 @@ class pawn extends Piece {
         if (this.color === 1) {
             sign = sign * -1;
         }
-
-        if (!capture) {
+        if (!capture && !isEnpassant) {
             if (y1 != y2) {
                 return true;
             }
@@ -262,11 +262,17 @@ class pawn extends Piece {
             if (x1 == 1 && this.color === 0) {
                 if (x2 != 2 && x2 != 3) {
                     return true;
+                } else if (x2 == 3) {
+                    window.enpassant = [x2, y2]
+                    return false
                 }
             }
             else if (x1 == 6 && this.color === 1) {
                 if (x2 != 5 && x2 != 4) {
                     return true;
+                } else if (x2 == 4) {
+                    window.enpassant = [x2, y2]
+                    return false
                 }
             }
             else if (x2 - x1 != sign) {
@@ -286,10 +292,27 @@ class pawn extends Piece {
 
     makeMove(board, xi, yi, xf, yf) {
         let capture = false;
+        let isEnpassant = false;
         if (board.state[xf] && board.state[xf][yf]) {
             capture = true;
         }
-        if (this.isIllegalMove(xi, yi, xf, yf, capture)) {
+
+        let sign = 1;
+        if (this.color === 1) {
+            sign = sign * 1;
+
+        }
+        console.log("sign", sign)
+        console.log("window.enpassant", window.enpassant)
+        console.log(xf + sign, yf)
+        console.log(board.state[xf + sign][yf])
+        if (window.enpassant && (window.enpassant[0] == xf + sign && window.enpassant[1] == yf)) {
+            isEnpassant = true;
+        }
+        console.log("isEnpassant", isEnpassant)
+
+        if (this.isIllegalMove(xi, yi, xf, yf, capture, isEnpassant)) {
+            console.log('-----oops it was not a valid move right there')
             return null;
         }
 
@@ -297,6 +320,9 @@ class pawn extends Piece {
         let currState = board.state;
         currState[xi][yi] = null;
         currState[xf][yf] = this;
+        if (isEnpassant) {
+            board.state[xf + sign][yf] = null
+        }
         if (currState[xf][yf].letter == 'p') {
             console.log('wtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtfwtf', xf)
             if (xf == 0) {
@@ -333,5 +359,3 @@ class pawn extends Piece {
         return currState;
     }
 }
-
-

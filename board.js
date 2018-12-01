@@ -198,10 +198,7 @@ class board {
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 if (state[i][j]) {
-                    //ctx.drawImage('', 10, 10)
-                    // ctx.fillText(state[i][j].letter, i * 100 + 50, j * 100 + 50);
                     let img = new Image;
-                    console.log('---------', state[i][j].letter.toLowerCase())
                     img.src = `http://images.chesscomfiles.com/chess-themes/pieces/neo/128/${(state[i][j].color ? 'b' : 'w') + state[i][j].letter.toLowerCase()}.png`;
                     img.onload = function () {
                         ctx.drawImage(img, i * 100, j * 100, 100, 100);
