@@ -298,8 +298,8 @@ class pawn extends Piece {
         }
 
         let sign = 1;
-        if (this.color === 1) {
-            sign = sign * 1;
+        if (this.color === 0) {
+            sign = sign * -1;
 
         }
         console.log("sign", sign)
